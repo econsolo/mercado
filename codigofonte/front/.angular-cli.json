@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "saudemed"
+    "name": "mercado"
   },
   "apps": [
     {
@@ -20,17 +20,14 @@
       "prefix": "app",
       "styles": [
         "../node_modules/jquery-ui-bundle/jquery-ui.css",
-        "../node_modules/uikit/dist/css/uikit.min.css",
-        "../node_modules/flatpickr/dist/flatpickr.css",
         "../node_modules/font-awesome/css/font-awesome.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.css",
         "styles.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/jquery-ui-bundle/jquery-ui.js",
-        "../node_modules/uikit/dist/js/uikit.min.js",
-        "../node_modules/uikit/dist/js/uikit-icons.min.js",
-        "../node_modules/flatpickr/dist/flatpickr.js"
+        "../node_modules/bootstrap/dist/js/bootstrap.bundle.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

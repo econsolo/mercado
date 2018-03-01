@@ -1,7 +1,7 @@
 import {Routes, RouterModule} from '@angular/router';
-import {ConteudoComponent} from './cliente/conteudo.component';
+import {ConteudoComponent} from './conteudo/conteudo.component';
 
-import {MODULE_ROUTES_CONTEUDO} from './cliente/conteudo.route';
+import {MODULE_ROUTES_CONTEUDO} from './conteudo/conteudo.route';
 
 const appRoutes: Routes = [
     { path: '', component: ConteudoComponent,

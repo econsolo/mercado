@@ -1,1 +1,38 @@
-<h1>Inicio</h1>
+<div class="container">
+
+  <div class="row">
+
+
+    <div *ngFor="let produto of produtos">
+    <div class="col-sm-12 col-md-4 padding-top-10">
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ produto.nome }}</h5>
+          <p class="card-text">
+            Quantidade disponível: {{ produto.quantidade }} {{ produto.unidade.nome }}
+          </p>
+          <div class="col-auto">
+            <label class="sr-only" for="quantidade">Quantidade</label>
+            <div class="input-group mb-2">
+              <div class="input-group-prepend">
+                <a href="javascript:void(0);" class="input-group-text fa fa-arrow-down no-underline"
+                (click)="removerDoCarrinho(produto);"></a>
+              </div>
+              <input type="text" class="form-control" id="quantidade" placeholder="Quantidade">
+              <div class="input-group-prepend">
+                <a href="javascript:void(0);" class="input-group-text fa fa-arrow-up no-underline"
+                (click)="adicionarAoCarrinho(produto);"></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    </div>
+
+
+  </div>
+</div>

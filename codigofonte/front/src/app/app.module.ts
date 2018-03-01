@@ -13,8 +13,8 @@ import {environment} from '../environments/environment';
 import {AppComponent} from './app.component';
 import {httpFactory} from './interceptor/http.factory';
 
-import {ConteudoComponent} from './cliente/conteudo.component';
-import {ConteudoModule} from './cliente/conteudo.module';
+import {ConteudoComponent} from './conteudo/conteudo.component';
+import {ConteudoModule} from './conteudo/conteudo.module';
 
 import {CurrencyFormatPipe} from '../assets/currency-format.pipe';
 
