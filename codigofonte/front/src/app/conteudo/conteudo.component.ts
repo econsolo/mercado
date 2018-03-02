@@ -20,8 +20,4 @@ export class ConteudoComponent implements OnInit {
   ngOnInit() {
   }
 
-  public teste(): void {
-    alert(this.router.url)
-  }
-
 }

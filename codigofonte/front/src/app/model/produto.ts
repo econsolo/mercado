@@ -6,6 +6,7 @@ export class Produto {
   nome: string;
   quantidade: number;
   valor: number;
+  valor_total: number;
 
   unidade: Unidade;
 }

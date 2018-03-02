@@ -1,0 +1,112 @@
+<main>
+  <div class="container">
+
+
+    <form [formGroup]="formCadastro" (submit)="salvar();">
+      <fieldset>
+        <legend>Produto</legend>
+
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="txtNome">Nome</label>
+          <input type="text" class="form-control" id="txtNome" placeholder="Nome"
+                 formControlName="nome" [(ngModel)]="produto.nome"
+                 [class.is-valid]="formCadastro.controls.nome.touched && formCadastro.controls.nome.valid"
+                 [class.is-invalid]="formCadastro.controls.nome.touched && formCadastro.controls.nome.invalid">
+          <div class="invalid-tooltip"
+               *ngIf="formCadastro.controls.nome.invalid && formCadastro.controls.nome.touched">
+            <span *ngIf="formCadastro.controls.nome.errors?.required">
+              Campo obrigatório
+            </span>
+            <span *ngIf="formCadastro.controls.nome.errors?.maxlength">
+              Máximo de 80 caracteres
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-5">
+          <label for="txtQuantidade">Quantidade</label>
+          <input type="text" class="form-control" id="txtQuantidade" #txtQuantidade placeholder="Quantidade"
+                 formControlName="quantidade" [(ngModel)]="produto.quantidade" currencyMask
+                 [options]="{ prefix: '', thousands: '.', decimal: ',' }" maxlength="16"
+                 [class.is-valid]="formCadastro.controls.quantidade.touched && formCadastro.controls.quantidade.valid"
+                 [class.is-invalid]="formCadastro.controls.quantidade.touched && formCadastro.controls.quantidade.invalid">
+          <div class="invalid-tooltip"
+               *ngIf="formCadastro.controls.quantidade.invalid && formCadastro.controls.quantidade.touched">
+            <span *ngIf="formCadastro.controls.quantidade.errors?.required">
+              Campo obrigatório
+            </span>
+            <span *ngIf="formCadastro.controls.quantidade.errors?.maxlength">
+              Máximo de 8 caracteres
+            </span>
+            <span *ngIf="formCadastro.controls.quantidade.errors?.number">
+              Somente números
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group col-md-7">
+          <label for="txtUnidade">Unidade</label>
+          <select id="txtUnidade" class="form-control"
+                  formControlName="id_unidade" [(ngModel)]="produto.id_unidade"
+                  [class.is-valid]="formCadastro.controls.id_unidade.touched && formCadastro.controls.id_unidade.valid"
+                  [class.is-invalid]="formCadastro.controls.id_unidade.touched && formCadastro.controls.id_unidade.invalid">
+            <option value="" selected>Selecione...</option>
+            <option value="1" >MOCK</option>
+          </select>
+          <div class="invalid-tooltip"
+               *ngIf="formCadastro.controls.id_unidade.invalid && formCadastro.controls.id_unidade.touched">
+            <span *ngIf="formCadastro.controls.id_unidade.errors?.required">
+              Campo obrigatório
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="txtValorUnitario">Valor Unitário</label>
+          <input type="text" class="form-control" id="txtValorUnitario" #txtValorUnitario placeholder="Valor Unitário"
+                 formControlName="valor" [(ngModel)]="produto.valor" currencyMask maxlength="16"
+                 [class.is-valid]="formCadastro.controls.valor.touched && formCadastro.controls.valor.valid"
+                 [class.is-invalid]="formCadastro.controls.valor.touched && formCadastro.controls.valor.invalid">
+          <div class="invalid-tooltip"
+               *ngIf="formCadastro.controls.valor.invalid && formCadastro.controls.valor.touched">
+            <span *ngIf="formCadastro.controls.valor.errors?.required">
+              Campo obrigatório
+            </span>
+            <span *ngIf="formCadastro.controls.valor.errors?.maxlength">
+              Máximo de 8 caracteres
+            </span>
+            <span *ngIf="formCadastro.controls.valor.errors?.number">
+              Somente números
+            </span>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="txtValorTotal">Valor Total</label>
+          <input type="text" class="form-control" id="txtValorTotal" placeholder="R$ 0,00"
+                 formControlName="valor_total" [(ngModel)]="produto.valor_total" currencyMask
+                 [class.is-valid]="formCadastro.controls.valor_total.touched && formCadastro.controls.valor_total.valid"
+                 [class.is-invalid]="formCadastro.controls.valor_total.touched && formCadastro.controls.valor_total.invalid">
+          <div class="invalid-tooltip"
+               *ngIf="formCadastro.controls.valor_total.invalid && formCadastro.controls.valor_total.touched">
+            <span *ngIf="formCadastro.controls.valor_total.errors?.required">
+              Preencha a Quantidade e o Valor Unitário
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">
+        Salvar
+        <i class="left-icon-button fa fa-floppy-o" aria-hidden="true"></i>
+      </button>
+      </fieldset>
+    </form>
+
+
+  </div>
+</main>
