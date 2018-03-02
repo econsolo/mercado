@@ -1,0 +1,10 @@
+2018/03/01 23:08:16 [notice] 8828#11624: signal process started
+2018/03/01 23:09:11 [notice] 7968#3468: signal process started
+2018/03/01 23:10:11 [notice] 13948#13352: signal process started
+2018/03/01 23:12:33 [notice] 11032#3616: signal process started
+2018/03/01 23:14:39 [notice] 6460#11952: signal process started
+2018/03/01 23:34:33 [error] 7032#7228: *1000 WSARecv() failed (10054: FormatMessage() error:(15100)) while reading upstream, client: 127.0.0.1, server: localhost, request: "GET /sockjs-node/633/tojp1n3j/eventsource HTTP/1.1", upstream: "http://127.0.0.1:4200/sockjs-node/633/tojp1n3j/eventsource", host: "localhost:5001", referrer: "http://localhost:5001/sockjs-node/iframe.html"
+2018/03/01 23:34:33 [error] 7032#7228: *990 WSARecv() failed (10054: FormatMessage() error:(15105)) while reading upstream, client: 127.0.0.1, server: localhost, request: "POST /sockjs-node/633/lybzaprt/xhr_streaming?t=1519958020726 HTTP/1.1", upstream: "http://127.0.0.1:4200/sockjs-node/633/lybzaprt/xhr_streaming?t=1519958020726", host: "localhost:5001", referrer: "http://localhost:5001/"
+2018/03/01 23:34:33 [error] 7032#7228: *1002 WSARecv() failed (10054: FormatMessage() error:(15105)) while reading response header from upstream, client: 127.0.0.1, server: localhost, request: "POST /sockjs-node/633/kxnucozz/xhr?t=1519958072635 HTTP/1.1", upstream: "http://127.0.0.1:4200/sockjs-node/633/kxnucozz/xhr?t=1519958072635", host: "localhost:5001", referrer: "http://localhost:5001/"
+2018/03/01 23:34:33 [error] 7032#7228: *999 WSARecv() failed (10054: FormatMessage() error:(15105)) while reading upstream, client: 127.0.0.1, server: localhost, request: "GET /sockjs-node/633/ptsxmm1p/eventsource HTTP/1.1", upstream: "http://127.0.0.1:4200/sockjs-node/633/ptsxmm1p/eventsource", host: "localhost:5001", referrer: "http://localhost:5001/"
+2018/03/01 23:37:02 [notice] 8508#3092: signal process started

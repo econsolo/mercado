@@ -23,10 +23,14 @@ export class InicioComponent implements OnInit {
   }
 
   ngOnInit() {
+    //this.getProdutos();
   }
 
   private getProdutos(): void {
-    this.produtos = this.inicioService.getProdutos();
+    this.inicioService.getProdutos().subscribe(data => {
+      this.produtos = data;
+      console.log(this.produtos);
+    });
   }
 
   public adicionarAoCarrinho(produto): void {

@@ -7,11 +7,15 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="javascript:void(0);">Início <span class="sr-only">(current)</span></a>
+        <li class="nav-item" [class.active]="router.url == '/inicio'">
+          <a class="nav-link" href="javascript:void(0);" [routerLink]="['/inicio']">
+            Início <span *ngIf="router.url == '/inicio'" class="sr-only">(current)</span>
+          </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0);">Produtos</a>
+        <li class="nav-item" [class.active]="router.url == '/consultar-produto'">
+          <a class="nav-link" href="javascript:void(0);" [routerLink]="['/consultar-produto']">
+            Produtos <span *ngIf="router.url == '/consultar-produto'" class="sr-only">(current)</span>
+          </a>
         </li>
       </ul>
       <span class="navbar-text">
@@ -19,7 +23,6 @@
     </span>
     </div>
   </nav>
-
 
   <div class="padding-top-5">
     <router-outlet></router-outlet>
