@@ -1,6 +1,6 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
-using mercado.Models;
+using mercado.Models.Map;
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
 
@@ -16,9 +16,12 @@ namespace mercado.NHibernate
                   .ConnectionString(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Programming\Projetos\mercado\mercado\codigofonte\banco\Mercado.mdf;Persist Security Info=True;Connect Timeout=30")
                               .ShowSql()
                 )
-               .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Unidade>())
-               .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Produto>())
-                .ExposeConfiguration(cfg => new SchemaExport(cfg).Create(true, true))
+               .Mappings(m => m.FluentMappings.AddFromAssemblyOf<UnidadeMap>())
+               .Mappings(m => m.FluentMappings.AddFromAssemblyOf<ProdutoMap>())
+               .Mappings(m => m.FluentMappings.AddFromAssemblyOf<UsuarioMap>())
+               .Mappings(m => m.FluentMappings.AddFromAssemblyOf<VendaMap>())
+               .Mappings(m => m.FluentMappings.AddFromAssemblyOf<VendaProdutoMap>())
+                .ExposeConfiguration(cfg => new SchemaExport(cfg).Create(false, false))
                 .BuildSessionFactory();
             return sessionFactory.OpenSession();
         }

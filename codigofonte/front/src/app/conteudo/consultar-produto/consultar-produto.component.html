@@ -1,33 +1,87 @@
-<div class="container">
-  <div class="row">
-    <h1>Produtos</h1>
-  </div>
+<main>
+  <div class="container">
 
-  <div class="row">
+    <div class="row">
+      <div class="col-sm-12">
+        <form [formGroup]="formConsulta">
+          <fieldset>
+            <legend>Filtro</legend>
 
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th scope="col">Produto</th>
-          <th scope="col">Quantidade</th>
-          <th scope="col">Valor Unitário</th>
-          <th scope="col">Ação</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let produto of produtos">
-          <th>{{ produto.nome }}</th>
-          <td>{{ produto.quantidade }} {{ produto.unidade.nome }}</td>
-          <td>{{ produto.valor | currency }}</td>
-          <td>
-            <a href="javascript:void(0);" class="fa fa-close"></a>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+
+            <div class="form-row">
+              <div class="form-group col-sm-12 col-md-6">
+                <label for="txtNome">Nome</label>
+                <input type="text" class="form-control" id="txtNome" placeholder="Nome"
+                       formControlName="nome" [(ngModel)]="nome"
+                       [class.is-valid]="formConsulta.controls['nome'].touched && formConsulta.controls['nome'].valid"
+                       [class.is-invalid]="formConsulta.controls['nome'].touched && formConsulta.controls['nome'].invalid">
+                <div class="invalid-tooltip"
+                     *ngIf="formConsulta.controls['nome'].invalid && formConsulta.controls['nome'].touched">
+              <span *ngIf="formConsulta.controls['nome'].errors?.maxlength">
+                Máximo de 80 caracteres
+              </span>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-light" (click)="limpar();">
+              Limpar
+              <i class="left-icon-button fa fa-trash" aria-hidden="true"></i>
+            </button>
+            <button type="submit" class="btn btn-primary" (click)="consultar();">
+              Consultar
+              <i class="left-icon-button fa fa-search" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="btn btn-default pull-right" (click)="irPara('/cadastrar-produto');">
+              Cadastrar
+              <i class="left-icon-button fa fa-plus" aria-hidden="true"></i>
+            </button>
+          </fieldset>
+        </form>
+      </div>
+
+    </div>
+<hr>
+    <div class="row">
+      <div class="col-sm-12">
+        <fieldset>
+          <legend>Produtos</legend>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th scope="col" width="50%">Produto</th>
+              <th scope="col" width="20%">Quantidade</th>
+              <th scope="col" width="20%">Valor Unitário</th>
+              <th scope="col" width="10%">Ação</th>
+            </tr>
+            </thead>
+            <tbody *ngIf="produtos.length">
+            <tr *ngFor="let produto of produtos">
+              <td>{{ produto.nome }}</td>
+              <td><span>{{ produto.quantidade | number }}</span>&nbsp;<span>{{ produto.unidade.nome }}</span></td>
+              <td>{{ produto.valor | currency:'BRL' }}</td>
+              <td>
+                <a href="javascript:void(0);" class="fa fa-close text-danger icone-acao-tabela"
+                   (click)="excluir(produto.id)"></a>
+                <a href="javascript:void(0);" class="fa fa-pencil text-dark icone-acao-tabela"
+                   (click)="irPara('/cadastrar-produto', produto.id);"></a>
+              </td>
+            </tr>
+            </tbody>
+            <tbody *ngIf="!produtos.length">
+            <tr>
+              <td colspan="4">
+                <h4 class="text-center text-muted">Nenhum produto cadastrado</h4>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        </fieldset>
+      </div>
     </div>
 
 
   </div>
-</div>
+</main>

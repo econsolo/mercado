@@ -3,9 +3,11 @@ import {Component, OnInit, Inject} from '@angular/core';
 import {Router, NavigationStart} from '@angular/router';
 import {ConsultarProdutoService} from './consultar-produto.service';
 import {Produto} from '../../model/produto';
+import {CustomValidators} from 'ng2-validation';
 
 declare var $: any;
 declare var UIkit: any;
+declare var swal: any;
 
 @Component({
   selector: 'app-consultar-produto-component',
@@ -17,20 +19,72 @@ declare var UIkit: any;
 export class ConsultarProdutoComponent implements OnInit {
 
   public produtos: Produto[] = [];
+  public nome: string;
+  public formConsulta: FormGroup;
 
   constructor(@Inject(Router) private router: Router,
+              @Inject(FormBuilder) private formBuilder: FormBuilder,
               @Inject(ConsultarProdutoService) private consultarProdutoService: ConsultarProdutoService) {
+
+    this.nome = '';
+    this.formConsulta = formBuilder.group({
+      nome: [this.nome, [
+        Validators.maxLength(80)
+      ]]
+    });
   }
 
   ngOnInit() {
-    //this.getProdutos();
+    this.getProdutos();
   }
 
   private getProdutos(): void {
-    this.consultarProdutoService.getProdutos().subscribe(data => {
+    this.consultarProdutoService.getProdutos(this.nome).subscribe(data => {
       this.produtos = data;
-      console.log(this.produtos);
     });
+  }
+
+  public consultar(): void {
+    this.getProdutos();
+  }
+
+  public limpar(): void {
+    this.nome = '';
+    this.getProdutos();
+  }
+
+  public excluir(id): void {
+    swal({
+      title: 'Você tem certeza?',
+      text: 'O Produto será excluído',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonClass: 'btn-danger',
+      confirmButtonText: 'Sim',
+      cancelButtonText: 'Não',
+      cancelButtonClass: 'btn-light',
+      closeOnConfirm: false,
+      showLoaderOnConfirm: true
+    }, () => {
+      this.consultarProdutoService.excluir(id).subscribe(() => {
+        swal({
+          title: 'Sucesso!',
+          text: 'Produto excluído',
+          type: 'success'
+        }, () => {
+          this.getProdutos();
+        });
+      });
+
+    });
+  }
+
+  public irPara(rota, id): void {
+    if (id) {
+      this.router.navigate([rota, id]);
+    } else {
+      this.router.navigate([rota]);
+    }
   }
 
 

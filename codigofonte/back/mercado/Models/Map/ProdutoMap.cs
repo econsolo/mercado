@@ -11,7 +11,7 @@ namespace mercado.Models.Map
 
             Id(x => x.Id)
                 .Column("id")
-                .GeneratedBy.Guid();
+                .Length(36);
 
             Map(x => x.Nome)
                 .Column("nome")
@@ -32,7 +32,7 @@ namespace mercado.Models.Map
 
             References(x => x.Unidade)
                 .Column("id_unidade")
-                .ForeignKey("FK_produto_unidade")
+                .ForeignKey("FK_PRODUTO_UNIDADE")
                 .Not.LazyLoad() // Sempre precisarei ter a Unidade carregada
                 .Not.Nullable();
         }

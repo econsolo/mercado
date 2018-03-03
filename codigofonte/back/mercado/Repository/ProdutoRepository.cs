@@ -1,4 +1,5 @@
 ﻿using mercado.Models;
+using mercado.Models.DTO;
 using NHibernate;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,11 @@ namespace mercado.Repository
             }
         }
 
-        
+        public List<Produto> Buscar(FiltroProdutoDTO filtro)
+        {
+            return _session.Query<Produto>()
+                .Where(p => p.Nome.ToUpper().Contains(filtro.Nome.ToString().Trim().ToUpper()))
+                .ToList();
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace mercado.Models
         {
         }
 
-        public virtual Guid Id { get; set; }
+        public virtual string Id { get; set; }
         public virtual string Nome { get; set; }
         public virtual double Quantidade { get; set; }
         public virtual double Valor { get; set; }

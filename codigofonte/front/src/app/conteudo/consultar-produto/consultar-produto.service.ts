@@ -7,8 +7,12 @@ export class ConsultarProdutoService {
   constructor(@Inject(Http) private http: Http) {
   }
 
-  public getProdutos() {
-    return this.http.get('api/produto/buscar-todos').map(res => res.json());
+  public getProdutos(nome) {
+    return this.http.post('api/produto/buscar', {nome: nome}).map(res => res.json());
+  }
+
+  public excluir(id) {
+    return this.http.delete('api/produto/excluir/' + id).map(res => res.json());
   }
 
 }

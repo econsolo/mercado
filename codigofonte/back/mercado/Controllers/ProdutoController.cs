@@ -1,4 +1,5 @@
 ﻿using mercado.Models;
+using mercado.Models.DTO;
 using mercado.NHibernate;
 using mercado.Service;
 using System;
@@ -17,36 +18,46 @@ namespace mercado.Controllers
             produtoService = new ProdutoService(NHibernateHelper.OpenSession());
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("buscar-todos")]
-        public IEnumerable<Produto> BuscarTodos()
+        public List<ProdutoDTO> BuscarTodos()
         {
             return produtoService.BuscarTodos();
         }
 
+        [HttpPost]
+        [Route("buscar")]
+        public List<ProdutoDTO> Buscar([FromBody]FiltroProdutoDTO filtro)
+        {
+            return produtoService.Buscar(filtro);
+        }
+
         [HttpGet]
         [Route("buscar-por-id/{id}")]
-        public Produto BuscarPorId(string id)
+        public ProdutoDTO BuscarPorId(string id)
         {
             return produtoService.BuscarPorId(id);
         }
 
         [HttpPost]
         [Route("salvar")]
-        public void Salvar([FromBody]Produto produto)
+        public void Salvar([FromBody]ProdutoDTO produto)
         {
+            produtoService.Salvar(produto);
         }
 
         [HttpPut]
         [Route("alterar/{id}")]
-        public void Put(string id, [FromBody]Produto produto)
+        public void Put(string id, [FromBody]ProdutoDTO produto)
         {
+            produtoService.Alterar(id, produto);
         }
 
         [HttpDelete]
         [Route("excluir/{id}")]
-        public void Delete(int id)
+        public void Delete(string id)
         {
+            produtoService.Excluir(id);
         }
     }
 }

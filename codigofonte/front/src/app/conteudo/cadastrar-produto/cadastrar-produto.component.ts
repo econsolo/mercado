@@ -4,9 +4,11 @@ import {Router, NavigationStart, ActivatedRoute} from '@angular/router';
 import {CadastrarProdutoService} from './cadastrar-produto.service';
 import {Produto} from '../../model/produto';
 import {CustomValidators} from 'ng2-validation';
+import {Unidade} from '../../model/unidade';
 
 declare var $: any;
 declare var UIkit: any;
+declare var swal: any;
 
 @Component({
   selector: 'app-cadastrar-produto-component',
@@ -18,6 +20,7 @@ declare var UIkit: any;
 export class CadastrarProdutoComponent implements OnInit {
 
   public produto: Produto;
+  public unidades: Unidade[] = [];
   public formCadastro: FormGroup;
 
   constructor(@Inject(Router) private router: Router,
@@ -38,7 +41,7 @@ export class CadastrarProdutoComponent implements OnInit {
         Validators.maxLength(8),
         CustomValidators.number
       ]],
-      id_unidade: [this.produto.id_unidade, [
+      id_unidade: [this.produto.unidade.id, [
         Validators.required
       ]],
       valor: [this.produto.valor, [
@@ -52,6 +55,17 @@ export class CadastrarProdutoComponent implements OnInit {
     });
 
     this.calcularValorTotal();
+  }
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      const id = params['id'];
+      if (id) {
+        this.getProdutoPorId(id);
+      }
+    });
+
+    this.getUnidades();
   }
 
   private calcularValorTotal() {
@@ -71,18 +85,15 @@ export class CadastrarProdutoComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      const id = params['id'];
-      if (id) {
-        this.getProdutoPorId(id);
-      }
-    });
-  }
-
   private getProdutoPorId(id): void {
     this.cadastrarProdutoService.getProdutoPorId(id).subscribe(data => {
       this.produto = data;
+    });
+  }
+
+  private getUnidades(): void {
+    this.cadastrarProdutoService.getUnidades().subscribe(data => {
+      this.unidades = data;
     });
   }
 
@@ -98,7 +109,28 @@ export class CadastrarProdutoComponent implements OnInit {
       return;
     }
 
-    // this.cadastrarProdutoService.salvar
+    if (this.produto.id) {
+      this.cadastrarProdutoService.alterar(this.produto.id, this.produto).subscribe(() => {
+        swal({
+          title: 'Sucesso!',
+          text: 'Produto alterado!',
+          type: 'success'
+        }, () => {
+          this.router.navigate(['/consultar-produto']);
+        });
+      });
+    } else {
+      this.cadastrarProdutoService.salvar(this.produto).subscribe(() => {
+        swal({
+          title: 'Sucesso!',
+          text: 'Novo produto adicionado!',
+          type: 'success'
+        }, () => {
+          this.router.navigate(['/consultar-produto']);
+        });
+      });
+    }
+
   }
 
 }

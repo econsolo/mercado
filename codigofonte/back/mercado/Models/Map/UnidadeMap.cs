@@ -10,7 +10,7 @@ namespace mercado.Models.Map
 
             Id(x => x.Id)
                 .Column("id")
-                .GeneratedBy.Guid();
+                .Length(36);
 
             Map(x => x.Nome)
                 .Column("nome")

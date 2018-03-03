@@ -50,11 +50,12 @@
         <div class="form-group col-md-7">
           <label for="txtUnidade">Unidade</label>
           <select id="txtUnidade" class="form-control"
-                  formControlName="id_unidade" [(ngModel)]="produto.id_unidade"
+                  formControlName="id_unidade" [(ngModel)]="produto.unidade.id"
                   [class.is-valid]="formCadastro.controls.id_unidade.touched && formCadastro.controls.id_unidade.valid"
                   [class.is-invalid]="formCadastro.controls.id_unidade.touched && formCadastro.controls.id_unidade.invalid">
-            <option value="" selected>Selecione...</option>
-            <option value="1" >MOCK</option>
+            <option value=undefined selected>Selecione...</option>
+            <option *ngFor="let unidade of unidades" value="{{ unidade.id }}">{{ unidade.nome }}</option>
+
           </select>
           <div class="invalid-tooltip"
                *ngIf="formCadastro.controls.id_unidade.invalid && formCadastro.controls.id_unidade.touched">

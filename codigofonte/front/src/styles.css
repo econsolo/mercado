@@ -10,3 +10,11 @@
 .right-icon-button {
   padding-right: 10px;
 }
+.icone-acao-tabela {
+  padding-left: 5px;
+  text-decoration: none;
+}
+a:hover, a:visited, a:link, a:active {
+  text-decoration: none;
+}
+
