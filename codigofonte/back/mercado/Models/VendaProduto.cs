@@ -5,8 +5,8 @@ namespace mercado.Models
     {
         public VendaProduto() { }
 
-        public string Id { get; set; }
-        public Venda Venda { get; set; }
-        public Produto Produto { get; set; }
+        public virtual string Id { get; set; }
+        public virtual Venda Venda { get; set; }
+        public virtual Produto Produto { get; set; }
     }
 }

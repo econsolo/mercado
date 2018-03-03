@@ -16,7 +16,7 @@ create table PRODUTO (
    ID_UNIDADE           varchar(36)          not null,
    NOME                 varchar(80)          not null,
    QUANTIDADE           decimal(8,2)         not null,
-   VALOR_UNITARIO       decimal(8,2)         not null,
+   VALOR                decimal(8,2)         not null,
    constraint PK_PRODUTO primary key (ID)
 )
 go

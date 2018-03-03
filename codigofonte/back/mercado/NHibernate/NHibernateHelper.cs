@@ -21,7 +21,7 @@ namespace mercado.NHibernate
                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<UsuarioMap>())
                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<VendaMap>())
                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<VendaProdutoMap>())
-                .ExposeConfiguration(cfg => new SchemaExport(cfg).Create(false, false))
+                .ExposeConfiguration(cfg => new SchemaExport(cfg).Create(true, false))
                 .BuildSessionFactory();
             return sessionFactory.OpenSession();
         }
