@@ -40,6 +40,10 @@
 
 # O que há no código até o momento?
 
+- [x] Modelagem do banco
+- [x] Responsividade da interface
+- [x] Preparação do Service Worker para PWA
+- [ ] Tags para funcionamento do PWA
 - [x] CRUD de produtos do mercado
 - [ ] Venda de produtos do mercado
 - [ ] Cadastro de novos usuários
