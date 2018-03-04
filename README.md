@@ -36,3 +36,12 @@
 1. Abra o navegador **Google Chrome**;
 2. Acesse *http://localhost:5001/* 
 3. De acordo com a configuração do **nginx**, toda URL acessada através dos *HTTP methods* com o prefixo **api/** será redirecionada para a porta na qual o projeto backend está hospedado.
+
+
+# O que há no código?
+
+- [x] CRUD de produtos do mercado
+- [ ] Venda de produtos do mercado
+- [ ] Cadastro de novos usuários
+- [ ] Login de usuários no sistema para efetuar vendas
+- [ ] Controle de acesso
