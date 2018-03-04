@@ -38,7 +38,7 @@
 3. De acordo com a configuração do **nginx**, toda URL acessada através dos *HTTP methods* com o prefixo **api/** será redirecionada para a porta na qual o projeto backend está hospedado.
 
 
-# O que há no código?
+# O que há no código até o momento?
 
 - [x] CRUD de produtos do mercado
 - [ ] Venda de produtos do mercado
