@@ -32,6 +32,7 @@ export class ConsultarProdutoComponent implements OnInit {
         Validators.maxLength(80)
       ]]
     });
+
   }
 
   ngOnInit() {

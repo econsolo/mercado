@@ -30,7 +30,7 @@
           <label for="txtQuantidade">Quantidade</label>
           <input type="text" class="form-control" id="txtQuantidade" #txtQuantidade placeholder="Quantidade"
                  formControlName="quantidade" [(ngModel)]="produto.quantidade" currencyMask
-                 [options]="{ prefix: '', thousands: '.', decimal: ',' }" maxlength="16"
+                 [options]="{ prefix: '', thousands: '.', precision: 0 }" maxlength="13"
                  [class.is-valid]="formCadastro.controls.quantidade.touched && formCadastro.controls.quantidade.valid"
                  [class.is-invalid]="formCadastro.controls.quantidade.touched && formCadastro.controls.quantidade.invalid">
           <div class="invalid-tooltip"

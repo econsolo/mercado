@@ -35,13 +35,17 @@ namespace mercado.Service
             // Vinculo produtos na venda salva
             carrinhoDTO.ProdutosDTO.ForEach(produto =>
             {
+                Produto p = _repositoryProduto.BuscarPorId(produto.Id);
                 VendaProduto vendaProduto = new VendaProduto()
                 {
                     Id = Guid.NewGuid().ToString(),
-                    Produto = _repositoryProduto.BuscarPorId(produto.Id),
+                    Produto = p,
                     Venda = venda
                 };
 
+                p.Quantidade--; // Removo 1 quantidade
+
+                _repositoryProduto.Alterar(p);
                 _repositoryVendaProduto.Salvar(vendaProduto);
             });
         }
@@ -53,7 +57,7 @@ namespace mercado.Service
                 Id = Guid.NewGuid().ToString(),
                 Total = valorTotal,
                 Usuario = _repositoryUsuario.BuscarPorId(usuarioDTO.Id),
-                Data = new DateTime()
+                Data = DateTime.Now
             };
 
             _repositoryVenda.Salvar(venda);

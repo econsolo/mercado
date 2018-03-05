@@ -3,26 +3,32 @@
   <div class="row">
 
 
-    <div *ngFor="let produto of produtos">
-    <div class="col-sm-12 col-md-4 padding-top-10">
+    <div *ngFor="let produto of produtos" class="col-sm-12 col-md-6 col-lg-4 padding-top-10">
 
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">{{ produto.nome }}</h5>
           <p class="card-text">
-            Quantidade disponível: {{ produto.quantidade }} {{ produto.unidade.nome }}
+            Quantidade disponível:
+            <strong [class.text-danger]="!podeAdicionarNoCarrinho(produto)">
+              {{ produto.quantidade }} {{ produto.unidade.nome }}
+            </strong> <br/>
+            Preço Unitário: <strong>{{ produto.valor | currency:'BRL' }}</strong>
           </p>
           <div class="col-auto">
             <label class="sr-only" for="quantidade">Quantidade</label>
             <div class="input-group mb-2">
               <div class="input-group-prepend">
-                <a href="javascript:void(0);" class="input-group-text fa fa-arrow-down no-underline"
-                (click)="removerDoCarrinho(produto);"></a>
+                <a href="javascript:void(0);" class="input-group-text fa fa-arrow-down no-underline text-danger"
+                   [class.link-disabled]="!podeRemoverDoCarrinho(produto)"
+                   (click)="removerDoCarrinho(produto);"></a>
               </div>
-              <input type="text" class="form-control" id="quantidade" placeholder="Quantidade">
+              <input type="text" class="form-control" disabled id="quantidade" placeholder="Quantidade"
+                     value="{{ calcularQuantidade(produto) }} {{ produto.unidade.nome }}">
               <div class="input-group-prepend">
-                <a href="javascript:void(0);" class="input-group-text fa fa-arrow-up no-underline"
-                (click)="adicionarAoCarrinho(produto);"></a>
+                <a href="javascript:void(0);" class="input-group-text fa fa-arrow-up no-underline text-success"
+                   [class.link-disabled]="!podeAdicionarNoCarrinho(produto)"
+                   (click)="adicionarAoCarrinho(produto);"></a>
               </div>
             </div>
           </div>
@@ -31,8 +37,60 @@
       </div>
 
     </div>
+
+
+  </div>
+</div>
+
+<a href="javascript:void(0);" class="float" (click)="abrirModal();">
+  <i class="fa fa-check icone-botao-fab"></i>
+</a>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="finalizarVendaModal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Finalizar Venda</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col" width="35%">Produto</th>
+            <th scope="col" width="25%">Quantidade</th>
+            <th scope="col" width="20%">Valor Unitário</th>
+            <th scope="col" width="20%">Valor Total</th>
+          </tr>
+          </thead>
+          <tbody *ngIf="carrinhoFormatado.length">
+          <tr *ngFor="let c of carrinhoFormatado">
+            <td>{{ c.nome }}</td>
+            <td><span>{{ c.quantidade | number }}</span>&nbsp;<span>{{ c.unidade.nome }}</span></td>
+            <td>{{ c.valor | currency:'BRL' }}</td>
+            <td>{{ c.valor_total | currency:'BRL' }}</td>
+          </tr>
+          </tbody>
+          <tbody *ngIf="!carrinhoFormatado.length">
+          <tr>
+            <td colspan="4">
+              <h4 class="text-center text-muted">Nenhum produto no carrinho</h4>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="finalizarVenda();" [disabled]="!carrinhoFormatado.length">Finalizar</button>
+      </div>
+
+
     </div>
-
-
   </div>
 </div>

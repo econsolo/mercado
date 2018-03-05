@@ -13,4 +13,8 @@ export class InicioService {
     return this.http.get('api/produto/buscar-todos').map(res => res.json());
   }
 
+  public vender(carrinho) {
+    return this.http.post('api/venda/vender', carrinho).map(res => res.json());
+  }
+
 }

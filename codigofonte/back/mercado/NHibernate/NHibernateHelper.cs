@@ -3,6 +3,8 @@ using FluentNHibernate.Cfg.Db;
 using mercado.Models.Map;
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
+using System;
+using System.IO;
 
 namespace mercado.NHibernate
 {
@@ -11,9 +13,11 @@ namespace mercado.NHibernate
 
         public static ISession OpenSession()
         {
+            string caminhoBanco = @"C:\Programming\Projetos\mercado\mercado\codigofonte\back\mercado\Banco\Mercado.mdf";
+
             ISessionFactory sessionFactory = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2012
-                  .ConnectionString(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Programming\Projetos\mercado\mercado\codigofonte\banco\Mercado.mdf;Persist Security Info=True;Connect Timeout=30")
+                  .ConnectionString(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename="+ caminhoBanco + ";Persist Security Info=True;Connect Timeout=30")
                               .ShowSql()
                 )
                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<UnidadeMap>())

@@ -18,7 +18,7 @@ namespace mercado.Controllers
             produtoService = new ProdutoService(NHibernateHelper.OpenSession());
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("buscar-todos")]
         public List<ProdutoDTO> BuscarTodos()
         {
