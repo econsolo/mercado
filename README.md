@@ -45,7 +45,7 @@
 - [x] Preparação do Service Worker para PWA
 - [ ] Tags para funcionamento do PWA
 - [x] CRUD de produtos do mercado
-- [ ] Venda de produtos do mercado
+- [x] Venda de produtos do mercado
 - [ ] Cadastro de novos usuários
 - [ ] Login de usuários no sistema para efetuar vendas
 - [ ] Controle de acesso
