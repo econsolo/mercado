@@ -49,8 +49,16 @@ namespace mercado.Repository
         public List<Usuario> Buscar(FiltroUsuarioDTO filtro)
         {
             return _session.Query<Usuario>()
-                .Where(p => p.Login.ToUpper().Contains(filtro.Login.ToString().Trim().ToUpper()))
+                .Where(p => p.Login.ToUpper().Contains(filtro.Login.Trim().ToUpper()))
                 .ToList();
+        }
+
+        public Usuario BuscarPorLoginSenha(UsuarioDTO usuarioDTO)
+        {
+            return _session.Query<Usuario>()
+                .Where(u => u.Login.ToUpper().Equals(usuarioDTO.Login.Trim().ToUpper()))
+                .Where(u => u.Senha.ToUpper().Equals(usuarioDTO.Senha.Trim().ToUpper()))
+                .FirstOrDefault();
         }
     }
 }

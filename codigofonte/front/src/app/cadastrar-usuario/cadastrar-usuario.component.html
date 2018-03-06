@@ -1,0 +1,83 @@
+<main class="height-100">
+  <div class="container height-100">
+
+
+    <form [formGroup]="formCadastro" (submit)="salvar();" class="login-form">
+      <fieldset>
+        <legend>Registre-se</legend>
+
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="txtLogin">Login <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="txtLogin" placeholder="Nome de Usuário"
+                   formControlName="login" [(ngModel)]="usuario.login"
+                   [class.is-valid]="formCadastro.controls['login'].touched && formCadastro.controls['login'].valid"
+                   [class.is-invalid]="formCadastro.controls['login'].touched && formCadastro.controls['login'].invalid">
+            <div class="invalid-tooltip"
+                 *ngIf="formCadastro.controls['login'].invalid && formCadastro.controls['login'].touched">
+              <span *ngIf="formCadastro.controls['login'].errors?.required">
+                Campo obrigatório
+              </span>
+              <span *ngIf="formCadastro.controls['login'].errors?.maxlength">
+              Máximo de 40 caracteres
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="txtSenha">Senha <span class="text-danger">*</span></label>
+            <input type="password" class="form-control" id="txtSenha" #txtQuantidade placeholder="Senha"
+                   formControlName="senha" [(ngModel)]="usuario.senha" maxlength="40"
+                   [class.is-valid]="formCadastro.controls['senha'].touched && formCadastro.controls['senha'].valid"
+                   [class.is-invalid]="formCadastro.controls['senha'].touched && formCadastro.controls['senha'].invalid">
+            <div class="invalid-tooltip"
+                 *ngIf="formCadastro.controls['senha'].invalid && formCadastro.controls['senha'].touched">
+              <span *ngIf="formCadastro.controls['senha'].errors?.required">
+                Campo obrigatório
+              </span>
+              <span *ngIf="formCadastro.controls['senha'].errors?.maxlength">
+                Máximo de 40 caracteres
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="txtConfirmarSenha">Confirmar Senha <span class="text-danger">*</span></label>
+            <input type="password" class="form-control" id="txtConfirmarSenha" #txtQuantidade placeholder="Confirmar Senha"
+                   formControlName="confirmar_senha" [(ngModel)]="usuario.confirmar_senha" maxlength="40"
+                   [class.is-valid]="formCadastro.controls['confirmar_senha'].touched && formCadastro.controls['confirmar_senha'].valid"
+                   [class.is-invalid]="formCadastro.controls['confirmar_senha'].touched && formCadastro.controls['confirmar_senha'].invalid">
+            <div class="invalid-tooltip"
+                 *ngIf="formCadastro.controls['confirmar_senha'].invalid && formCadastro.controls['confirmar_senha'].touched">
+              <span *ngIf="formCadastro.controls['confirmar_senha'].errors?.required">
+                Campo obrigatório
+              </span>
+              <span *ngIf="formCadastro.controls['confirmar_senha'].errors?.maxlength">
+                Máximo de 40 caracteres
+              </span>
+              <span *ngIf="formCadastro.controls['confirmar_senha'].errors?.equalTo" style="display: block;">
+                As senhas não conferem
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-sm-12">
+            <button type="submit" class="btn btn-lg btn-block btn-primary">
+              Salvar
+              <i class="left-icon-button fa fa-floppy-o" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
+      </fieldset>
+    </form>
+
+
+  </div>
+</main>

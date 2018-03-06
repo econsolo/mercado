@@ -36,14 +36,18 @@ namespace mercado.Service
             return UsuariosDTO;
         }
 
-        public void Salvar(UsuarioDTO usuarioDTO)
+        public UsuarioDTO Salvar(UsuarioDTO usuarioDTO)
         {
-            _repository.Salvar(ConverterParaEntidade(null, usuarioDTO));
+            Usuario u = ConverterParaEntidade(null, usuarioDTO);
+            _repository.Salvar(u);
+            return new UsuarioDTO(u);
         }
 
-        public void Alterar(string id, UsuarioDTO usuarioDTO)
+        public UsuarioDTO Alterar(string id, UsuarioDTO usuarioDTO)
         {
-            _repository.Alterar(ConverterParaEntidade(id, usuarioDTO));
+            Usuario u = ConverterParaEntidade(id, usuarioDTO);
+            _repository.Alterar(u);
+            return new UsuarioDTO(u);
         }
 
         private Usuario ConverterParaEntidade(string id, UsuarioDTO usuarioDTO)
@@ -55,9 +59,21 @@ namespace mercado.Service
             return usuario;
         }
 
-        internal void Excluir(string id)
+        public void Excluir(string id)
         {
             _repository.Excluir(_repository.BuscarPorId(id));
+        }
+
+        public UsuarioDTO BuscarPorLoginSenha(UsuarioDTO usuarioDTO)
+        {
+            Usuario usuario = _repository.BuscarPorLoginSenha(usuarioDTO);
+            UsuarioDTO u = null;
+            if (usuario != null)
+            {
+                u = new UsuarioDTO(usuario);
+            }
+
+            return u;
         }
 
         public UsuarioDTO BuscarPorId(string id)

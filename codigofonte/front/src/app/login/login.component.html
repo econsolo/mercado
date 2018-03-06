@@ -1,0 +1,68 @@
+<main class="height-100">
+  <div class="container height-100">
+
+
+    <form [formGroup]="formLogin" (submit)="entrar();" class="login-form">
+      <fieldset>
+        <legend>Entre com suas credenciais</legend>
+
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="txtLogin">Login <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="txtLogin" placeholder="Nome de Usuário"
+                   formControlName="login" [(ngModel)]="usuario.login"
+                   [class.is-valid]="formLogin.controls['login'].touched && formLogin.controls['login'].valid"
+                   [class.is-invalid]="formLogin.controls['login'].touched && formLogin.controls['login'].invalid">
+            <div class="invalid-tooltip"
+                 *ngIf="formLogin.controls['login'].invalid && formLogin.controls['login'].touched">
+              <span *ngIf="formLogin.controls['login'].errors?.required">
+                Campo obrigatório
+              </span>
+              <span *ngIf="formLogin.controls['login'].errors?.maxlength">
+              Máximo de 40 caracteres
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="txtSenha">Senha <span class="text-danger">*</span></label>
+            <input type="password" class="form-control" id="txtSenha" #txtQuantidade placeholder="Senha"
+                   formControlName="senha" [(ngModel)]="usuario.senha" maxlength="40"
+                   [class.is-valid]="formLogin.controls['senha'].touched && formLogin.controls['senha'].valid"
+                   [class.is-invalid]="formLogin.controls['senha'].touched && formLogin.controls['senha'].invalid">
+            <div class="invalid-tooltip"
+                 *ngIf="formLogin.controls['senha'].invalid && formLogin.controls['senha'].touched">
+              <span *ngIf="formLogin.controls['senha'].errors?.required">
+                Campo obrigatório
+              </span>
+              <span *ngIf="formLogin.controls['senha'].errors?.maxlength">
+                Máximo de 40 caracteres
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-sm-12">
+            <button type="submit" class="btn btn-lg btn-block btn-primary">
+              Entrar
+            </button>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-sm-12">
+            <a href="javascript:void(0);" (click)="irParaCadastrar();">
+              Não possui uma conta? Registre-se aqui
+            </a>
+          </div>
+        </div>
+
+      </fieldset>
+    </form>
+
+
+  </div>
+</main>

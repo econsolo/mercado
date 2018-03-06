@@ -8,9 +8,12 @@ namespace mercado.Models.DTO
         
         public UsuarioDTO(Usuario usuario)
         {
-            Id = usuario.Id;
-            Login = usuario.Login;
-            Senha = usuario.Senha;
+            if (usuario != null)
+            {
+                Id = usuario.Id;
+                Login = usuario.Login;
+                Senha = usuario.Senha;
+            }
         }
 
         [JsonProperty(PropertyName = "id")]

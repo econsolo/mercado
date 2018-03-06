@@ -16,24 +16,37 @@ import {httpFactory} from './interceptor/http.factory';
 import {ConteudoComponent} from './conteudo/conteudo.component';
 import {ConteudoModule} from './conteudo/conteudo.module';
 
-import {CurrencyFormatPipe} from '../assets/currency-format.pipe';
+import {CadastrarUsuarioComponent} from './cadastrar-usuario/cadastrar-usuario.component';
+import {CadastrarUsuarioService} from './cadastrar-usuario/cadastrar-usuario.service';
+
+import {LoginComponent} from './login/login.component';
+import {LoginService} from './login/login.service';
+
+import {AuthGuard} from './interceptor/auth';
 
 @NgModule({
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     ConteudoModule,
     routing,
+    HttpModule,
     CustomFormsModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production})
   ],
   declarations: [
     AppComponent,
     ConteudoComponent,
-    CurrencyFormatPipe
+    CadastrarUsuarioComponent,
+    LoginComponent
   ],
   providers: [
     {provide: Http, useFactory: httpFactory, deps: [XHRBackend, RequestOptions, Router]},
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    CadastrarUsuarioService,
+    LoginService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -177,6 +177,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Controllers\UnidadeController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\VendaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -213,6 +214,7 @@
     <Compile Include="Service\ProdutoService.cs" />
     <Compile Include="Service\UnidadeService.cs" />
     <Compile Include="Service\UsuarioService.cs" />
+    <Compile Include="Service\ValidarLogin.cs" />
     <Compile Include="Service\VendaService.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -7,5 +7,6 @@ namespace mercado.Repository
     public interface IUsuarioRepository : IRepository<Usuario>
     {
         List<Usuario> Buscar(FiltroUsuarioDTO filtro);
+        Usuario BuscarPorLoginSenha(UsuarioDTO usuarioDTO);
     }
 }

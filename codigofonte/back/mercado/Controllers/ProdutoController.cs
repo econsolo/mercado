@@ -1,14 +1,13 @@
-﻿using mercado.Models;
-using mercado.Models.DTO;
+﻿using mercado.Models.DTO;
 using mercado.NHibernate;
 using mercado.Service;
-using System;
 using System.Collections.Generic;
 using System.Web.Http;
 
 namespace mercado.Controllers
 {
     [RoutePrefix("api/produto")]
+    [ValidarLogin]
     public class ProdutoController : ApiController
     {
         private readonly ProdutoService produtoService;
@@ -18,6 +17,7 @@ namespace mercado.Controllers
             produtoService = new ProdutoService(NHibernateHelper.OpenSession());
         }
 
+        
         [HttpGet]
         [Route("buscar-todos")]
         public List<ProdutoDTO> BuscarTodos()
@@ -31,7 +31,7 @@ namespace mercado.Controllers
         {
             return produtoService.Buscar(filtro);
         }
-
+        
         [HttpGet]
         [Route("buscar-por-id/{id}")]
         public ProdutoDTO BuscarPorId(string id)

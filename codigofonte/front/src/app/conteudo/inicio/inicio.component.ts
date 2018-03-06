@@ -7,6 +7,7 @@ import {Usuario} from '../../model/usuario';
 
 declare var $: any;
 declare var UIkit: any;
+declare var swal: any;
 
 @Component({
   selector: 'app-inicio-component',
@@ -32,7 +33,7 @@ export class InicioComponent implements OnInit {
   }
 
   private getUsuario(): void {
-    this.usuario.id = '1';
+    this.usuario.id = JSON.parse(localStorage.getItem('id_usuario'));
   }
 
   private getProdutos(): void {
@@ -80,7 +81,13 @@ export class InicioComponent implements OnInit {
       usuario: this.usuario
     };
     this.inicioService.vender(obj).subscribe(() => {
-
+      swal({
+        title: 'Sucesso!',
+        text: 'Venda finalizada!',
+        type: 'success'
+      }, () => {
+        this.getProdutos();
+      });
     });
   }
 
