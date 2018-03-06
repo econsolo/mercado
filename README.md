@@ -49,3 +49,4 @@
 - [x] Cadastro de novos usuários
 - [x] Login de usuários no sistema para efetuar vendas
 - [x] Controle de acesso
+- [ ] Testes finais
