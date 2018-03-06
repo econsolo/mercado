@@ -46,6 +46,6 @@
 - [ ] Tags para funcionamento do PWA
 - [x] CRUD de produtos do mercado
 - [x] Venda de produtos do mercado
-- [ ] Cadastro de novos usuários
-- [ ] Login de usuários no sistema para efetuar vendas
-- [ ] Controle de acesso
+- [x] Cadastro de novos usuários
+- [x] Login de usuários no sistema para efetuar vendas
+- [x] Controle de acesso
