@@ -10,7 +10,7 @@
 ## 2. Para o frontend
 
 1. NodeJS e npm para gerenciamento de pacotes;
-2. Angular 5;
+2. Angular 5 na IDE **JetBrains WebStorm**;
 3. Bootstrap 4.
 
 # Montando o ambiente
