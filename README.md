@@ -18,8 +18,9 @@
 ## 1. Rodando o projeto backend
 
 1. Abra o arquivo *codigofonte/back/mercado.sln* para iniciá-lo no **Visual Studio**;
-2. Clique para rodar o projeto e veja em qual porta ele foi hospedado;
-3. Altere-a na configuração do passo abaixo.
+2. Dentro do **Visual Studio**, abra a classe **NHibernateHelper.cs** e altere a *string caminhoBanco* recebendo o caminho completo do arquivo *codigofonte/back/mercado/Banco/Mercado.mdf*;
+3. Clique para rodar o projeto e veja em qual porta ele foi hospedado;
+4. Altere-a na configuração do **Nginx** abaixo.
 
 ## 2. Configurando o Nginx
 
