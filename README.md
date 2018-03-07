@@ -44,10 +44,10 @@
 - [x] Modelagem do banco
 - [x] Responsividade da interface
 - [x] Preparação do Service Worker para PWA
-- [ ] Tags para funcionamento do PWA
+- [x] Tags para funcionamento do PWA
 - [x] CRUD de produtos do mercado
 - [x] Venda de produtos do mercado
 - [x] Cadastro de novos usuários
 - [x] Login de usuários no sistema para efetuar vendas
 - [x] Controle de acesso
-- [ ] Testes finais
+- [x] Testes finais
