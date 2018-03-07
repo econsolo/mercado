@@ -4,6 +4,7 @@ using mercado.Repository;
 using NHibernate;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace mercado.Service
 {
@@ -11,11 +12,13 @@ namespace mercado.Service
     {
         private IProdutoRepository _repository;
         private IUnidadeRepository _unidadeRepository;
+        private IVendaProdutoRepository _vendaProdutoRepository;
 
         public ProdutoService(ISession session)
         {
             _repository = new ProdutoRepository(session);
             _unidadeRepository = new UnidadeRepository(session);
+            _vendaProdutoRepository = new VendaProdutoRepository(session);
         }
 
         public List<ProdutoDTO> BuscarTodos()
@@ -57,6 +60,12 @@ namespace mercado.Service
             produto.Valor = produtoDTO.Valor;
             produto.Unidade = _unidadeRepository.BuscarPorId(produtoDTO.Unidade.Id);
             return produto;
+        }
+
+        public bool TemVinculos(string id)
+        {
+            IEnumerable<VendaProduto> vendas = _vendaProdutoRepository.BuscarPorProduto(id);
+            return vendas != null && vendas.Any();
         }
 
         public void Excluir(string id)

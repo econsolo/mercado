@@ -69,20 +69,21 @@ export class InterceptedHttp extends Http {
   }
 
   private beforeRequest() {
-    const $carregando = $('#carregando');
-    $carregando.css('visibility', 'visible');
-    $carregando.find('> span').each(function () {
-      $(this)
-        .data('origWidth', $(this).width())
-        .width(0)
-        .animate({
-          width: $(this).data('origWidth')
-        }, 1200);
-    });
+    const $carregando = $('#loading');
+    $carregando.show();
+    const $conteudo = $('#conteudo');
+    $conteudo.css('-webkit-filter', 'blur(3px)');
+    $conteudo.css('cursor', 'wait');
+    $conteudo.css('pointer-events', 'none');
   }
 
   private afterRequest() {
-    $('#carregando').css('visibility', 'hidden');
+    const $carregando = $('#loading');
+    const $conteudo = $('#conteudo');
+    $carregando.hide();
+    $conteudo.css('-webkit-filter', '');
+    $conteudo.css('cursor', 'default');
+    $conteudo.css('pointer-events', 'auto');
   }
 
   private getRequestOptionArgs(options?: RequestOptionsArgs): RequestOptionsArgs {

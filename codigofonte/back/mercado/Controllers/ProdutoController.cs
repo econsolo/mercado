@@ -59,5 +59,12 @@ namespace mercado.Controllers
         {
             produtoService.Excluir(id);
         }
+
+        [HttpGet]
+        [Route("tem-vinculos/{id}")]
+        public bool TemVinculos(string id)
+        {
+            return produtoService.TemVinculos(id);
+        }
     }
 }

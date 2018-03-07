@@ -87,6 +87,7 @@ export class InicioComponent implements OnInit {
         type: 'success'
       }, () => {
         this.getProdutos();
+        this.carrinho = [];
       });
     });
   }

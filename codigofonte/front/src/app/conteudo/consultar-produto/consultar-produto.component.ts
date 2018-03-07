@@ -55,27 +55,39 @@ export class ConsultarProdutoComponent implements OnInit {
   }
 
   public excluir(id): void {
-    swal({
-      title: 'Você tem certeza?',
-      text: 'O Produto será excluído',
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonClass: 'btn-danger',
-      confirmButtonText: 'Sim',
-      cancelButtonText: 'Não',
-      cancelButtonClass: 'btn-light',
-      closeOnConfirm: false,
-      showLoaderOnConfirm: true
-    }, () => {
-      this.consultarProdutoService.excluir(id).subscribe(() => {
+    this.consultarProdutoService.temVinculos(id).subscribe(retorno => {
+
+      if (!retorno) {
         swal({
-          title: 'Sucesso!',
-          text: 'Produto excluído',
-          type: 'success'
+          title: 'Você tem certeza?',
+          text: 'O Produto será excluído',
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonClass: 'btn-danger',
+          confirmButtonText: 'Sim',
+          cancelButtonText: 'Não',
+          cancelButtonClass: 'btn-light',
+          closeOnConfirm: false,
+          showLoaderOnConfirm: true
         }, () => {
-          this.getProdutos();
+          this.consultarProdutoService.excluir(id).subscribe(() => {
+            swal({
+              title: 'Sucesso!',
+              text: 'Produto excluído',
+              type: 'success'
+            }, () => {
+              this.getProdutos();
+            });
+          });
+
         });
-      });
+      } else {
+        swal(
+          'Oops...',
+          'O Produto está vinculado à vendas. Não é possível excluí-lo!',
+          'error'
+        );
+      }
 
     });
   }
@@ -87,6 +99,5 @@ export class ConsultarProdutoComponent implements OnInit {
       this.router.navigate([rota]);
     }
   }
-
 
 }

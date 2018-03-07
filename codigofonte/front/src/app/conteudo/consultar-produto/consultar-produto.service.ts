@@ -15,4 +15,8 @@ export class ConsultarProdutoService {
     return this.http.delete('api/produto/excluir/' + id).map(res => res.json());
   }
 
+  public temVinculos(id) {
+    return this.http.get('api/produto/tem-vinculos/' + id).map(res => res.json());
+  }
+
 }

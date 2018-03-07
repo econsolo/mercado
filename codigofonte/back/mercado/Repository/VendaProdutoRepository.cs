@@ -27,6 +27,11 @@ namespace mercado.Repository
 
         public VendaProduto BuscarPorId(string id) => _session.Get<VendaProduto>(id);
 
+        public IEnumerable<VendaProduto> BuscarPorProduto(string id)
+        {
+            return _session.Query<VendaProduto>().Where(v => v.Produto.Id == id).ToList();
+        }
+
         public IEnumerable<VendaProduto> BuscarTodos() => _session.Query<VendaProduto>().ToList();
 
         public void Excluir(VendaProduto entidade)
